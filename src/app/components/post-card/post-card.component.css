@@ -1,0 +1,13 @@
+.card {
+    width: 18rem;
+    margin: 10px;
+}
+
+.card-header {
+    background-color: white;
+}
+
+.heart {
+    float: left;
+    margin-right: 8px;
+}

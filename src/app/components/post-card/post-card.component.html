@@ -1,0 +1,12 @@
+<div class="card mx-auto">
+    <div class="card-header">
+        <img class="card-img-top" *ngIf="post" src="{{ post.imgData }}" alt="Post image">
+    </div>
+    <div class="card-body">
+        <h5 class="card-title" *ngIf="post">{{ post.title }}</h5>
+        <p><a href="#">
+        <img class="heart" src="assets/heart.png" alt="heart">
+        </a></p>
+        <h5>{{ post.likes }}</h5>
+    </div>
+</div>

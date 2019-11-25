@@ -1,0 +1,6 @@
+<ngb-alert type="danger" *ngIf="error">{{ error }}</ngb-alert>
+<div class="card mx-auto align-items-center">
+    <app-drawing-canvas></app-drawing-canvas>
+    <input type="text" [formControl]="postTitle" class="form-control" placeholder="Title" aria-label="Title">
+    <button type="button" class="btn btn-primary" (click)="postData()">POST!</button>
+</div>
