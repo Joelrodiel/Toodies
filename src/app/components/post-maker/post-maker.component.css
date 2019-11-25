@@ -5,6 +5,12 @@
     text-align: center;
 }
 
+@media (max-width:700px) {
+    .card {
+        width: 90%;
+    }
+}
+
 canvas {
     border: 1px solid black;
     margin: 10px;
