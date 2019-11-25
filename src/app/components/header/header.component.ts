@@ -10,8 +10,18 @@ export class HeaderComponent implements OnInit {
   constructor() { }
 
   navbarOpen = false;
+  offline: boolean;
+
+  onNetworkStatusChange() {
+      this.offline = !navigator.onLine;
+      if (this.offline) {
+          console.log("Oh shit we offline.");
+      }
+  }
 
   ngOnInit() {
+      window.addEventListener('online', this.onNetworkStatusChange.bind(this));
+      window.addEventListener('offline', this.onNetworkStatusChange.bind(this));
   }
 
   toggleNavbar() {

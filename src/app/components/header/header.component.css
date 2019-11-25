@@ -1,3 +1,7 @@
 .nav-spacer {
     margin-bottom: 65px;
 }
+
+.offlineStatus {
+    color: white;
+}
