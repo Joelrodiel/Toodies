@@ -1,12 +1,19 @@
 <div class="card mx-auto">
     <div class="card-header">
-        <img class="card-img-top" *ngIf="post" src="{{ post.imgData }}" alt="Post image">
+        <img class="card-img-top" *ngIf="post; else loading" src="{{ post.imgData }}" alt="Post image">
     </div>
     <div class="card-body">
-        <h5 class="card-title" *ngIf="post">{{ post.title }}</h5>
-        <p><a href="#">
-        <img class="heart" src="assets/heart.png" alt="heart">
+        <h5 class="card-title" *ngIf="post; else loading">{{ post.title }}</h5>
+        <p><a href="#" onclick="return false;" (click)="likePost()">
+        <img class="heart" src="assets/{{ heartIconPath }}" alt="heart">
         </a></p>
-        <h5>{{ post.likes }}</h5>
+        <h5 *ngIf="post; else loading">{{ post.likes }}</h5>
     </div>
 </div>
+
+<ng-template #loading>
+    <div class="timeline-item">
+        <div class="animated-background">
+        </div>
+    </div>
+</ng-template>
