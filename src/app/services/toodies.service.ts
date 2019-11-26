@@ -35,4 +35,11 @@ export class ToodiesService {
 
         return this.http.get(this.endpoint + query);
     }
+
+    likePost(id: string) {
+
+        var query = "likeDrawing/" + id;
+
+        return this.http.get(this.endpoint + query);
+    }
 }
