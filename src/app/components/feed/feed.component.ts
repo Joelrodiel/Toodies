@@ -11,7 +11,7 @@ import { ToodiesService } from '../../services/toodies.service';
 export class FeedComponent implements OnInit {
 
     posts: Array<Post>;
-    showPost: Post;
+    postsLoaded: boolean;
 
     constructor(private toodiesService: ToodiesService) { }
 
@@ -23,6 +23,7 @@ export class FeedComponent implements OnInit {
                 for (var i = data.length; i--;) {
                     this.posts.push(new Post(data[i]['_id'], data[i]['title'], data[i]['imgData'], data[i]['likes']));
                 }
+                this.postsLoaded = true;
             });
     }
 

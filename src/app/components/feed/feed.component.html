@@ -1,1 +1,4 @@
-<app-post-card *ngFor="let post of posts" [post]="post" (liked)="postLiked($event)"></app-post-card>
+<div *ngIf="postsLoaded">
+    <app-post-card *ngFor="let post of posts" [post]="post" (liked)="postLiked($event)"></app-post-card>
+</div>
+<app-post-card *ngIf="!postsLoaded"></app-post-card>
