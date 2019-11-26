@@ -19,6 +19,7 @@ export class DrawingCanvasComponent implements OnInit {
     private isPressing: boolean;
     private prev: any;
     private currentPos: any;
+    private history: any;
 
     constructor() { }
 
@@ -49,17 +50,29 @@ export class DrawingCanvasComponent implements OnInit {
 
     bindEvents() {
         this.canvas.addEventListener('mousedown', this.handlePointerDown.bind(this));
+        this.canvas.addEventListener('touchstart', this.handlePointerDown.bind(this));
         this.canvas.addEventListener('mouseup', this.handlePointerUp.bind(this));
+        this.canvas.addEventListener('touchend', this.handlePointerUp.bind(this));
         this.canvas.addEventListener('mousemove', this.handlePointerMove.bind(this));
+        this.canvas.addEventListener('touchmove', this.handlePointerMove.bind(this));
     }
 
     handlePointerDown(e) {
         e.preventDefault();
         const rect = this.canvas.getBoundingClientRect();
-        this.prev = {
-            x: e.clientX - rect.left,
-            y: e.clientY - rect.top
-        };
+        if (e.type == "mousedown") {
+            this.prev = {
+                x: e.clientX - rect.left,
+                y: e.clientY - rect.top
+            };
+        }
+        else
+        {
+            this.prev = {
+                x: e.touches[0].clientX - rect.left,
+                y: e.touches[0].clientY - rect.top
+            };
+        }
 
         if (!this.isPressing) {
             this.drawCanvas(this.prev, this.prev);
@@ -77,20 +90,37 @@ export class DrawingCanvasComponent implements OnInit {
     handlePointerMove(e) {
         const rect = this.canvas.getBoundingClientRect();
 
-        this.currentPos = {
-            x: e.clientX - rect.left,
-            y: e.clientY - rect.top
-        };
+        if (e.type == "mousemove") {
+            this.currentPos = {
+                x: e.clientX - rect.left,
+                y: e.clientY - rect.top
+            };
+        }
+        else
+        {
+            this.currentPos = {
+                x: e.touches[0].clientX - rect.left,
+                y: e.touches[0].clientY - rect.top
+            };
+        }
 
         if (this.isPressing) {
             this.drawCanvas(this.prev, this.currentPos);
         }
         
-        this.prev = {
-            x: e.clientX - rect.left,
-            y: e.clientY - rect.top
-        };
-
+        if (e.type == "mousemove") {
+            this.prev = {
+                x: e.clientX - rect.left,
+                y: e.clientY - rect.top
+            };
+        }
+        else
+        {
+            this.prev = {
+                x: e.touches[0].clientX - rect.left,
+                y: e.touches[0].clientY - rect.top
+            };
+        }
     }
 
     drawCanvas(prevPos: { x: number, y: number }, currentPos: { x: number, y: number }) {
@@ -104,6 +134,7 @@ export class DrawingCanvasComponent implements OnInit {
             this.context.moveTo(prevPos.x, prevPos.y);
             this.context.lineTo(currentPos.x, currentPos.y);
             this.context.stroke();
+            this.context.closePath();
         }
     }
 }
