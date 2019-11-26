@@ -1,9 +1,11 @@
 export class Post {
+    id: string;
     title: string;
     imgData: string;
     likes: number;
 
-    constructor(t: string, img: string, likes: number) {
+    constructor(id: string, t: string, img: string, likes: number) {
+        this.id = id;
         this.title = t;
         this.imgData = img;
         this.likes = likes;

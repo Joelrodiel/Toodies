@@ -14,6 +14,7 @@ export class PostMakerComponent implements AfterViewInit {
 
     @ViewChild(DrawingCanvasComponent, { static: false }) private drawingCanvasComponent: DrawingCanvasComponent;
     postTitle = new FormControl('');
+    postSubmitted = false;
     error = "";
 
     constructor(private toodiesService: ToodiesService) { }
@@ -28,12 +29,14 @@ export class PostMakerComponent implements AfterViewInit {
         }
 
         var imgData = this.drawingCanvasComponent.getCanvasImgData();
-        var newPost = new Post(this.postTitle.value, imgData, 0);
+        var newPost = new Post("", this.postTitle.value, imgData, 0);
 
         this.toodiesService.newPost(newPost).subscribe(res => { },
             error => {
                 console.log(error);
             });
+
+        this.postSubmitted = true;
     }
 
 }
