@@ -29,9 +29,13 @@ export class ToodiesService {
         }));
     }
 
-    getPosts() {
+    getPosts(skip: Number = 0, lim: Number = 0) {
         
-        var query = "drawings";
+        var query = "drawings?skip=" + skip;
+
+        if (lim > 0) {
+            query += "&limit=" + lim;
+        }
 
         return this.http.get(this.endpoint + query);
     }
