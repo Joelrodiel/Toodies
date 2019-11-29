@@ -18,7 +18,7 @@ export class FeedComponent implements OnInit {
     currentPage;
     endOfPosts = false;
 
-    @HostListener('window:scroll', ['$event'])
+    @HostListener('window:scroll', [])
     @Throttle(400)
     onScroll() {
         if (!this.endOfPosts && window.scrollY > (400 * 5) - window.innerHeight) {
