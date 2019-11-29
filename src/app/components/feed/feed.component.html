@@ -2,3 +2,11 @@
     <app-post-card *ngFor="let post of posts" [post]="post" (liked)="postLiked($event)"></app-post-card>
 </div>
 <app-post-card *ngIf="!postsLoaded"></app-post-card>
+<div class="img-container" *ngIf="!endOfPosts">
+    <img src="/assets/spinner.gif">
+</div>
+<div *ngIf="endOfPosts" style="text-align: center;">
+    <hr>
+    <img src="/assets/icons/icon-128x128.png">
+    <p class="text-muted">Thats it. Go enjoy your day :-)</p>
+</div>
