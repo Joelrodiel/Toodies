@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
@@ -10,7 +11,7 @@ import { Post } from '../models/post.model';
 })
 export class ToodiesService {
 
-    endpoint = "http://toodies-api.herokuapp.com/";
+    endpoint = environment.apiUrl;
     httpOptions = {
         headers: new HttpHeaders({
             'Content-type': 'application/json'
